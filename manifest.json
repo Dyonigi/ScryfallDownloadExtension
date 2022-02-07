@@ -1,10 +1,11 @@
 {
   "manifest_version": 2,
-  "name": "My Cool Extension",
+  "name": "Scryfall Downloader Popup",
   "version": "0.1",
   "background": {
     "scripts": ["background.js"]
   },
+  "permissions": ["activeTab", "http://domain/getjson*"],
   "content_scripts": [
     {
       "matches": [
@@ -14,6 +15,8 @@
     }
   ],
   "browser_action": {
-    "default_icon": "icon.png"
+    "default_icon": "icon.png",
+	"default_title": "Lista Carte",
+	"default_popup": "popup.html"
   }
 }

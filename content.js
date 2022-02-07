@@ -17,17 +17,20 @@
 	*/
 	
 // content.js
+//sends back current tab URL
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
+	  
     if( request.message === "clicked_browser_action" ) {
-
+		
 		var start = "https://api.scryfall.com/cards/search?q="
 		//%28t%3Alegendary+t%3Acreature%29+e%3Abbd+is%3Afirstprinting&order=released&dir=asc&as=checklist
-		var end = "&format=csv"
-		
+		var end = "&format=csv"		
 		var search = window.location.href.substr(window.location.href.indexOf("?"));
 		console.log("search was: " + search);
-      chrome.runtime.sendMessage({"message": "open_new_tab", "url": start + search + end});
+		let url = start + search;
+
+		sendResponse({data:url});
     }
   }
 );
